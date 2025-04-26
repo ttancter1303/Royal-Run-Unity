@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
@@ -8,48 +10,57 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] float chunkLength = 10f;
     [SerializeField] float moveSpeed = 8f;
 
-    GameObject[] chunks = new GameObject[10];
+    List<GameObject> chunks = new List<GameObject>();
     private void Start()
     {
-        SpawnChunks();
+        SpawnStartingChunks();
     }
     private void Update()
     {
         MoveChunk();
     }
-    private void SpawnChunks()
+    private void SpawnStartingChunks()
     {
         for (int i = 0; i < startingChunkAmount; i++)
         {
-            float spawningPositionZ = CalculateSpawnPosZ(i);
-            Vector3 chunkSpawnPos = new Vector3(transform.position.x, transform.position.y, spawningPositionZ);
-            GameObject newChunk = Instantiate(chunkPrefab, chunkSpawnPos, Quaternion.identity, chunkParent);
-            chunks[i] = newChunk;
-            
-
+            SpawnChunk();
         }
     }
 
-    private float CalculateSpawnPosZ(int i)
+    private void SpawnChunk()
+    {
+        float spawningPositionZ = CalculateSpawnPosZ();
+        Vector3 chunkSpawnPos = new Vector3(transform.position.x, transform.position.y, spawningPositionZ);
+        GameObject newChunk = Instantiate(chunkPrefab, chunkSpawnPos, Quaternion.identity, chunkParent);
+        chunks.Add(newChunk);
+    }
+
+    private float CalculateSpawnPosZ()
     {
         float spawningPositionZ;
-        if (i == 0)
+        if (chunks.Count == 0)
         {
             spawningPositionZ = transform.position.z;
         }
         else
         {
-            spawningPositionZ = transform.position.z + (i * chunkLength);
+            spawningPositionZ = chunks[chunks.Count - 1].transform.position.z + chunkLength;
         }
-
         return spawningPositionZ;
     }
     void MoveChunk()
     {
-        for (int i = 0; i < chunks.Length; i++)
+        for (int i = 0; i < chunks.Count; i++)
         {
-            chunks[i].transform.Translate(-transform.forward * (moveSpeed * Time.deltaTime));
-            
+            GameObject chunk = chunks[i];
+            chunk.transform.Translate(-transform.forward * (moveSpeed * Time.deltaTime));
+            if(chunk.transform.position.z <= Camera.main.transform.position.z - chunkLength)
+            {
+                chunks.Remove(chunk);
+                Destroy(chunk);
+
+                SpawnChunk();
+            }
         }
     }
 }
