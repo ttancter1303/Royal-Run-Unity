@@ -49,12 +49,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.31, y: 1.31, z: 0.45142734}
-  m_Center: {x: -0.04, y: 0.64, z: 0.03}
+  m_Size: {x: 2.6266565, y: 0.84307176, z: 0.45142734}
+  m_Center: {x: -0.012719154, y: 0.4065359, z: 0.030000001}
 --- !u!54 &6771883350198657441
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -124,8 +124,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 4149417121974798738}
     m_Modifications:
     - target: {fileID: 2693128255328584602, guid: 1656d845b8440f7499036e22fd8a8999, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693128255328584602, guid: 1656d845b8440f7499036e22fd8a8999, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.66809
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693128255328584602, guid: 1656d845b8440f7499036e22fd8a8999, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.968
+      value: 1.19
       objectReference: {fileID: 0}
     - target: {fileID: 2693128255328584602, guid: 1656d845b8440f7499036e22fd8a8999, type: 3}
       propertyPath: m_LocalPosition.y
@@ -186,8 +194,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 4149417121974798738}
     m_Modifications:
     - target: {fileID: 2693128255328584602, guid: 1656d845b8440f7499036e22fd8a8999, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693128255328584602, guid: 1656d845b8440f7499036e22fd8a8999, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.66809
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693128255328584602, guid: 1656d845b8440f7499036e22fd8a8999, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.0209999
+      value: -1.19
       objectReference: {fileID: 0}
     - target: {fileID: 2693128255328584602, guid: 1656d845b8440f7499036e22fd8a8999, type: 3}
       propertyPath: m_LocalPosition.y
